@@ -4,15 +4,21 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'abel': ['Abel', 'sans-serif']
+      'abel': ['Abel', 'sans-serif'],
+      'poppins': ['Poppins', 'sans-serif'],
+      'work-sans': ['Work Sans', 'sans-serif'],
     },
     extend: {
-      backgroundImage: {
-        'laptop-image': "url('../public/images/laptop-image.svg')",
+      colors: {
+        'black-bg': '#010208',
+        'light-grey': '#E3E4E6',
       },
-      blur: {
-        xs: '2px',
-      }
+      backgroundImage: {
+        'chameleon': "url('assets/img/chameleon.png')",
+        'namibie': "url('assets/img/namibie.png')",
+        'vinyle': "url('assets/img/vinyle.png')",
+      },
+      accessibility: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     },
   },
   plugins: [],

@@ -2,37 +2,59 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  z-index: 100;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.active{
+  background: linear-gradient(90deg, #EECC81 -78.57%, #F1CAAC -32.68%, #E68270 12.92%, #BA65AD 61.85%, #8A4FF2 98.51%, #8254F4 131.15%, #6764C8 165.59%, #6660C9 194.05%);
+  background-clip: text;
+  position:relative;
+  /* border-bottom: 2px solid white; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.gradient:hover{
+  background: linear-gradient(90deg, #EECC81 -78.57%, #F1CAAC -32.68%, #E68270 12.92%, #BA65AD 61.85%, #8A4FF2 98.51%, #8254F4 131.15%, #6764C8 165.59%, #6660C9 194.05%);
+  background-clip: text;
+  position:relative;
+  /* border-bottom: 2px solid white; */
 }
 
-.App-link {
-  color: #61dafb;
+.multicolor{
+  background: linear-gradient(90deg, #EECC81 0%, #F1CAAC 16.83%, #E68270 33.56%, #BA65AD 51.51%, #8A4FF2 64.95%, #8254F4 76.93%, #6764C8 89.56%, #6660C9 100%);
+  background-clip: text;
+  opacity: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.linkedIn {
+  background: linear-gradient(43.7deg, #000000 36.97%, #1C022C 105.01%);
+}
+.linkedIn-before {
+  background: linear-gradient(45deg, #010208 40%, #9e00ff 100%);
+}
+
+.gitHub {
+  background: linear-gradient(41.63deg, #000000 18.08%, #000000 51.56%, #512D2F 111.77%, #DC7B7F 124.96%);
+}
+.gitHub-before {
+  background: linear-gradient(45deg, #010208 40%, #dc7b7f 100%);
+}
+
+.mail {
+  background: linear-gradient(41.63deg, #000000 18.08%, #000000 51.56%, #2D5144 111.77%, #54FFA3 124.96%);
+}
+.mail-before {
+  background: linear-gradient(45deg, #010208 40%, #33F046  100%);
+}
+
+.button {
+  background:linear-gradient(106deg, #E68270 0%, #BA65AD 19%, #8A4FF2 38%, #8254F4 45%, #6764C8 50%, #8254F4 55%, #8A4FF2 62%, #BA65AD 81%, #E68270 100%);
+  /* background:linear-gradient(90deg, #EECC81 0%, #F1CAAC 7%, #E68270 14%, #BA65AD 22%, #8A4FF2 31%, #8254F4 38%, #6764C8 45%, #6660C9 50%, #6764C8 55%, #8254F4 60%, #8A4FF2 67%, #BA65AD 78%, #E68270 86%, #F1CAAC 93%, #EECC81 100%);  background: linear-gradient(to right, #EECC81 -257.44%, #F1CAAC -213.94%, #E68270 -171.29%, #BA65AD -127.18%, #8A4FF2 -90.42%, #8254F4 -59.37%, #6764C8 -26.02%, #6660C9 0%); */
+  transition: 0.5s;
+  background-size: 200% auto;
+
+}
+
+.button:hover {
+  background-position: right center;
 }
