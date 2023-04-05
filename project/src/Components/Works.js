@@ -22,7 +22,9 @@ export default function Works() {
             <p class="font-semibold text-base">MISHMASH PROJECT</p>
             <p class="font-normal text-3xl text-[#E3E4E6]/50">Catch-all project <span class="text-white font-semibold"> in which I add small projects frequently.</span></p>
             <p class="font-light text-lg">React</p>
-            <div class="button rounded-md w-52 h-14 flex justify-center items-center hover:shadow-lg hover:shadow-gray-800">View work</div>
+            <a href="https://github.com/Noemie21/Mishmash" rel="noreferrer" target="_blank">
+              <div class="button rounded-md w-52 h-14 flex justify-center items-center hover:shadow-lg hover:shadow-gray-800">View work</div>
+            </a>
           </div>
         </div>
         {/* 2 */}
@@ -32,7 +34,7 @@ export default function Works() {
           </div>
           <div class="flex-1 h-[40vh] flex flex-col justify-between font-poppins text-white md:mt-0 mt-4">
             <p class="font-semibold text-base">TUTUBE</p>
-            <p class="font-normal text-3xl text-[#E3E4E6]/50">School project. Creation of a site allowing to  <span class="text-white font-semibold">register, connect, upload videos, add comments and also to follow other users</span></p>
+            <p class="font-normal text-3xl sm:max-md:text-xl text-[#E3E4E6]/50">School project. Creation of a site allowing to  <span class="text-white font-semibold">register, connect, upload videos, add comments and also to follow other users</span></p>
             <p class="font-light text-lg">Symfony</p>
             <a href="https://github.com/Noemie21/Tutube-V2/tree/main/Tutube" rel="noreferrer" target="_blank">
               <div class="button rounded-md w-52 h-14 flex justify-center items-center hover:shadow-lg hover:shadow-gray-800">View work</div>

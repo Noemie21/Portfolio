@@ -21,7 +21,7 @@ export default function HomePage() {
 
   return (
     <div class="flex flex-col justify-center min-w-full h-full bg-black-bg px-28 z-100 relative" ref={scollToHome}>
-      <nav class="h-[10vh] min-w-full container sticky top-0 flex items-center justify-between fixed top-0 bg-black-bg flex flex-row text-white font-poppins font-semibold z-100" >
+      <nav class="h-[10vh] min-w-full container sticky top-0 flex items-center justify-between fixed top-0 bg-black-bg flex flex-row text-white font-poppins font-semibold z-100 sm:max-md:w-screen" >
         <p class="md:text-2xl">NOEMIE KPATENON</p>
         <div class="">
           <ul class="hidden md:flex flex-row p-4 text-sm z-100">
