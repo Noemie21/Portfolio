@@ -8,74 +8,91 @@
   <meta property="og:title" content="DocuMind – Chat with your documents">
   <meta property="og:description" content="RAG assistant with source citations, conversation memory and streaming. Live demo.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* Same palette as the noemie.pro portfolio (dark by default) */
     :root {
-      --bg: #f7f7fb;
-      --surface: #ffffff;
-      --text: #1b1b29;
-      --muted: #5b5b72;
-      --border: #e2e2ec;
-      --accent: #4f46e5;
-      --accent-soft: #eef0ff;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1017;
-        --surface: #181a24;
-        --text: #ececf4;
-        --muted: #a2a3b8;
-        --border: #2a2c3a;
-        --accent: #8b85ff;
-        --accent-soft: #23234a;
-      }
+      --bg: #0a0a0f;
+      --surface: #18181b;
+      --text: #f1f5f9;
+      --heading: #ffffff;
+      --muted: #94a3b8;
+      --border: #27272a;
+      --accent: #8b5cf6;
+      --accent-light: #a78bfa;
+      --accent-soft: rgba(139, 92, 246, 0.1);
+      --gradient: linear-gradient(90deg, #a78bfa, #c084fc, #f472b6);
+      --gradient-bg: linear-gradient(90deg, #7c3aed, #a855f7, #ec4899);
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
+    body::before {
+      content: ""; position: fixed; top: -10rem; right: -10rem; width: 30rem; height: 30rem;
+      background: rgba(139, 92, 246, 0.12); border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: -1;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
     .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 16px 48px; }
+    .back { display: inline-block; margin-bottom: 24px; color: var(--muted); text-decoration: none; font-size: 0.92rem; }
+    .back:hover { color: var(--heading); }
     header { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; }
-    h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -0.02em; }
-    .tagline { margin: 6px 0 0; color: var(--muted); max-width: 60ch; }
+    .eyebrow { font-family: "JetBrains Mono", monospace; color: var(--accent-light); font-size: 0.85rem; margin: 0 0 6px; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.03em; color: var(--heading); }
+    .gradient-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .tagline { margin: 8px 0 0; color: var(--muted); max-width: 60ch; font-size: 1.05rem; }
     .links { display: flex; flex-wrap: wrap; gap: 8px; }
     .btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+      padding: 10px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.92rem;
       border: 1px solid var(--border); color: var(--text); background: var(--surface);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
-    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .btn:hover { filter: brightness(1.06); }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; padding: 0; list-style: none; }
-    .chips li {
-      background: var(--accent-soft); color: var(--text);
-      padding: 4px 12px; border-radius: 999px; font-size: 0.88rem;
-    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { background: var(--gradient-bg); border-color: transparent; color: #fff; }
+    .btn.primary:hover { box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.6); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0; padding: 0; list-style: none; }
+    .chips li { background: var(--accent-soft); color: var(--accent-light); padding: 4px 12px; border-radius: 999px; font-size: 0.875rem; }
     .note {
-      margin: 0 0 16px; padding: 12px 14px; border-radius: 12px;
-      background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 0.92rem;
+      margin: 0 0 16px; padding: 12px 16px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+      color: var(--muted); font-size: 0.92rem;
     }
-    .note strong { color: var(--text); }
+    .note strong { color: var(--heading); }
     .frame {
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.3);
     }
-    iframe { display: block; width: 100%; height: 82vh; min-height: 560px; border: 0; }
-    .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 28px; }
-    .how div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
-    .how h3 { margin: 0 0 4px; font-size: 1rem; }
+    iframe { display: block; width: 100%; height: 82vh; min-height: 560px; border: 0; background: var(--bg); }
+    .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 32px; }
+    .how div {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .how div:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.3); }
+    .how h3 { margin: 0 0 6px; font-size: 1rem; color: var(--heading); }
+    .how h3 span { font-family: "JetBrains Mono", monospace; color: var(--accent-light); margin-right: 6px; }
     .how p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-    footer { margin-top: 32px; color: var(--muted); font-size: 0.88rem; text-align: center; }
-    footer a { color: inherit; }
+    footer { margin-top: 40px; color: var(--muted); font-size: 0.88rem; text-align: center; }
+    footer a { color: var(--accent-light); text-decoration: none; }
+    footer a:hover { color: var(--heading); }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <a class="back" href="/#work">← Back to portfolio</a>
     <header>
       <div>
-        <h1>🧠 DocuMind</h1>
+        <p class="eyebrow">RAG System</p>
+        <h1>🧠 Docu<span class="gradient-text">Mind</span></h1>
         <p class="tagline">Upload PDF, Word or text files and ask questions about them. Every answer cites the document and page it comes from.</p>
       </div>
       <nav class="links">
@@ -104,9 +121,9 @@
     </div>
 
     <section class="how" aria-label="How it works">
-      <div><h3>1. Index</h3><p>Documents are split into chunks and embedded into a private, per-session vector store.</p></div>
-      <div><h3>2. Retrieve</h3><p>Follow-up questions are rewritten using the conversation, then the most relevant chunks are found.</p></div>
-      <div><h3>3. Answer</h3><p>The model answers only from those chunks, streams the reply and shows its sources.</p></div>
+      <div><h3><span>01</span>Index</h3><p>Documents are split into chunks and embedded into a private, per-session vector store.</p></div>
+      <div><h3><span>02</span>Retrieve</h3><p>Follow-up questions are rewritten using the conversation, then the most relevant chunks are found.</p></div>
+      <div><h3><span>03</span>Answer</h3><p>The model answers only from those chunks, streams the reply and shows its sources.</p></div>
     </section>
 
     <footer>
