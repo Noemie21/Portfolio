@@ -3,6 +3,8 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
+    { "source": "/documind", "destination": "/documind/index.html" },
+    { "source": "/documind/", "destination": "/documind/index.html" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }

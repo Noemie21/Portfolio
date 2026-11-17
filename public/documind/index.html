@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DocuMind – Chat with your documents</title>
+  <meta name="description" content="DocuMind is a RAG assistant: upload PDF, Word or text files and ask questions with cited sources. Live demo.">
+  <meta property="og:title" content="DocuMind – Chat with your documents">
+  <meta property="og:description" content="RAG assistant with source citations, conversation memory and streaming. Live demo.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --surface: #ffffff;
+      --text: #1b1b29;
+      --muted: #5b5b72;
+      --border: #e2e2ec;
+      --accent: #4f46e5;
+      --accent-soft: #eef0ff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1017;
+        --surface: #181a24;
+        --text: #ececf4;
+        --muted: #a2a3b8;
+        --border: #2a2c3a;
+        --accent: #8b85ff;
+        --accent-soft: #23234a;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 16px 48px; }
+    header { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; }
+    h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -0.02em; }
+    .tagline { margin: 6px 0 0; color: var(--muted); max-width: 60ch; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+      border: 1px solid var(--border); color: var(--text); background: var(--surface);
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn:hover { filter: brightness(1.06); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; padding: 0; list-style: none; }
+    .chips li {
+      background: var(--accent-soft); color: var(--text);
+      padding: 4px 12px; border-radius: 999px; font-size: 0.88rem;
+    }
+    .note {
+      margin: 0 0 16px; padding: 12px 14px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 0.92rem;
+    }
+    .note strong { color: var(--text); }
+    .frame {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+    iframe { display: block; width: 100%; height: 82vh; min-height: 560px; border: 0; }
+    .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 28px; }
+    .how div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+    .how h3 { margin: 0 0 4px; font-size: 1rem; }
+    .how p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    footer { margin-top: 32px; color: var(--muted); font-size: 0.88rem; text-align: center; }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>🧠 DocuMind</h1>
+        <p class="tagline">Upload PDF, Word or text files and ask questions about them. Every answer cites the document and page it comes from.</p>
+      </div>
+      <nav class="links">
+        <a class="btn primary" id="open-app" href="#" target="_blank" rel="noopener">Open full screen ↗</a>
+        <a class="btn" href="https://github.com/Noemie21/Documind" target="_blank" rel="noopener">Source code on GitHub</a>
+      </nav>
+    </header>
+
+    <ul class="chips">
+      <li>RAG with LangChain</li>
+      <li>ChromaDB</li>
+      <li>GPT-4o-mini</li>
+      <li>Streaming answers</li>
+      <li>Conversation memory</li>
+      <li>Source citations</li>
+    </ul>
+
+    <p class="note">
+      <strong>To try it:</strong> upload a PDF, Word or text file in the sidebar, then ask a question in the chat.
+      Your documents stay private to your session. If the demo has been idle, it can take about 30 seconds to wake up.
+    </p>
+
+    <div class="frame">
+      <iframe id="app" title="DocuMind live demo" loading="lazy"
+              allow="clipboard-write" referrerpolicy="no-referrer"></iframe>
+    </div>
+
+    <section class="how" aria-label="How it works">
+      <div><h3>1. Index</h3><p>Documents are split into chunks and embedded into a private, per-session vector store.</p></div>
+      <div><h3>2. Retrieve</h3><p>Follow-up questions are rewritten using the conversation, then the most relevant chunks are found.</p></div>
+      <div><h3>3. Answer</h3><p>The model answers only from those chunks, streams the reply and shows its sources.</p></div>
+    </section>
+
+    <footer>
+      Built by <a href="/">Noémie K</a> · Python, LangChain, Streamlit
+    </footer>
+  </div>
+
+  <script>
+    // Hugging Face Space URL: change it here if your Space name is different.
+    const SPACE_URL = "https://noemie21-documind.hf.space";
+    document.getElementById("app").src = SPACE_URL + "/?embed=true";
+    document.getElementById("open-app").href = SPACE_URL;
+  </script>
+</body>
+</html>
