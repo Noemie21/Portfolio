@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import ThemeToggle from './ThemeToggle'
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -9,7 +10,7 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ]
 
-export default function Navbar({ isDark }) {
+export default function Navbar({ isDark, setIsDark }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -42,6 +43,7 @@ export default function Navbar({ isDark }) {
           <span className="gradient-text">K.</span>
         </motion.a>
 
+        <div className="flex items-center gap-4 md:gap-8">
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
@@ -57,13 +59,17 @@ export default function Navbar({ isDark }) {
           ))}
         </ul>
 
+        <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
+
         {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 text-heading"
+          aria-label="Toggle menu"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

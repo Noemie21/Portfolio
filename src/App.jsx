@@ -11,7 +11,6 @@ import Contact from './components/Contact'
 import LikeButton from './components/LikeButton'
 import Chatbot from './components/Chatbot'
 import CustomCursor from './components/CustomCursor'
-import ThemeToggle from './components/ThemeToggle'
 
 function App() {
   const [isDark, setIsDark] = useState(true)
@@ -60,10 +59,7 @@ function App() {
       </div>
 
       {/* Navigation */}
-      <Navbar isDark={isDark} />
-
-      {/* Theme toggle */}
-      <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
+      <Navbar isDark={isDark} setIsDark={setIsDark} />
 
       {/* Main content */}
       <main>

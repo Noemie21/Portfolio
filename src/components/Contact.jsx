@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react'
+import { Github, Linkedin, FileDown, ArrowUpRight } from 'lucide-react'
 
 const contactLinks = [
   {
@@ -15,10 +15,11 @@ const contactLinks = [
     gradient: 'from-blue-600 to-blue-800',
   },
   {
-    name: 'Email',
-    icon: Mail,
-    href: 'mailto:n.kpatenon@gmail.com',
+    name: 'Download CV',
+    icon: FileDown,
+    href: '/CV_Noemie_Kpatenon_AI_Engineer.pdf',
     gradient: 'from-violet-600 to-purple-800',
+    download: true,
   },
 ]
 
@@ -55,6 +56,7 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                download={link.download || undefined}
                 className={`flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r ${link.gradient} 
                            text-white font-medium shadow-lg hover:shadow-xl transition-shadow`}
                 initial={{ opacity: 0, y: 20 }}
@@ -72,7 +74,7 @@ export default function Contact() {
 
           {/* CTA Button */}
           <motion.a
-            href="sms:+33612354236?body=Hello%20:)%20"
+            href="mailto:n.kpatenon@gmail.com?subject=Hello%20No%C3%A9mie"
             className="inline-flex items-center gap-2 px-10 py-4 btn-primary text-lg group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

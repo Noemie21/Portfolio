@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react'
+import { Github, Linkedin, Mail, ChevronDown, Download } from 'lucide-react'
 
 const roles = ['AI Engineer', 'Fullstack Developer', 'Problem Solver', 'React Enthusiast']
 
@@ -122,6 +122,16 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
             >
               Get in Touch
+            </motion.a>
+            <motion.a
+              href="/CV_Noemie_Kpatenon_AI_Engineer.pdf"
+              download
+              className="btn-secondary inline-flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download size={18} />
+              Download CV
             </motion.a>
           </div>
 

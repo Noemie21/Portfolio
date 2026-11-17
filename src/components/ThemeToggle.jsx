@@ -5,7 +5,7 @@ export default function ThemeToggle({ isDark, setIsDark }) {
   return (
     <motion.button
       onClick={() => setIsDark(!isDark)}
-      className={`fixed top-2 right-6 z-50 p-3 rounded-full shadow-lg transition-all duration-300 ${
+      className={`p-2.5 rounded-full shadow-lg transition-all duration-300 ${
         isDark 
           ? 'bg-gray-800 hover:bg-gray-700 shadow-violet-500/20' 
           : 'bg-white hover:bg-gray-100 shadow-gray-300'
@@ -25,9 +25,9 @@ export default function ThemeToggle({ isDark, setIsDark }) {
         transition={{ duration: 0.2 }}
       >
         {isDark ? (
-          <Sun size={22} className="text-yellow-400" />
+          <Sun size={20} className="text-yellow-400" />
         ) : (
-          <Moon size={22} className="text-violet-600" />
+          <Moon size={20} className="text-violet-600" />
         )}
       </motion.div>
     </motion.button>

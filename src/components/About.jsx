@@ -24,11 +24,18 @@ const skills = [
 
 const timeline = [
   {
-    year: 'Now',
-    icon: Rocket,
-    title: 'Open to Opportunities',
-    place: 'Worldwide',
-    description: 'Looking for AI Engineer roles',
+    year: '2020-23',
+    icon: GraduationCap,
+    title: 'Bachelor Web Development',
+    place: 'Epitech Digital',
+    description: 'Fullstack training with focus on React',
+  },
+  {
+    year: '2020-24',
+    icon: Briefcase,
+    title: 'Professional Experiences',
+    place: 'CozyCloud, Unlatch, Nanolab, IMCAS',
+    description: 'Fullstack Developer',
   },
   {
     year: '2024-25',
@@ -38,18 +45,11 @@ const timeline = [
     description: 'Computer Vision & Deep Learning',
   },
   {
-    year: '2020-24',
-    icon: Briefcase,
-    title: 'Professional Experiences',
-    place: 'CozyCloud, Unlatch, Nanolab, IMCAS',
-    description: 'Fullstack Developer',
-  },
-  { 
-    year: '2020-23',
-    icon: GraduationCap,
-    title: 'Bachelor Web Development',
-    place: 'Epitech Digital',
-    description: 'Fullstack training with focus on React',
+    year: 'Now',
+    icon: Rocket,
+    title: 'Open to Opportunities',
+    place: 'Worldwide',
+    description: 'Looking for AI Engineer roles',
   },
 ]
 
