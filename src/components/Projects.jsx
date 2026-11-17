@@ -11,7 +11,7 @@ const projects = [
     icon: Brain,
     gradient: 'from-blue-500 via-cyan-500 to-teal-500',
     github: 'https://github.com/Noemie21/DocuMind',
-    demo: null,
+    demo: 'https://www.noemie.pro/documind/',
   },
   {
     id: 2,
@@ -78,6 +78,9 @@ export default function Projects() {
                   className={`relative aspect-video rounded-2xl bg-gradient-to-br ${project.gradient} p-8 
                             flex items-center justify-center overflow-hidden group cursor-pointer`}
                   whileHover={{ scale: 1.02 }}
+                  onClick={() => project.demo && window.open(project.demo, '_blank', 'noopener,noreferrer')}
+                  role={project.demo ? 'link' : undefined}
+                  aria-label={project.demo ? `Open the ${project.title} live demo` : undefined}
                 >
                   {/* Background pattern */}
                   <div className="absolute inset-0 opacity-20">
@@ -106,6 +109,8 @@ export default function Projects() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`${project.title} source code`}
                         className="p-4 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -118,6 +123,8 @@ export default function Projects() {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`${project.title} live demo`}
                         className="p-4 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -157,6 +164,18 @@ export default function Projects() {
                       <Github size={20} />
                       <span>View code</span>
                       <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </motion.a>
+                  )}
+                  {project.demo && (
+                    <motion.a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-muted hover:text-heading transition-colors group"
+                      whileHover={{ x: 5 }}
+                    >
+                      <ExternalLink size={20} />
+                      <span>Live demo</span>
                     </motion.a>
                   )}
                 </div>
