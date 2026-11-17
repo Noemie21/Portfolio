@@ -56,7 +56,7 @@ export default function Chatbot() {
     setIsLoading(true)
 
     try {
-      // Call your backend API that proxies to Anthropic
+      // Call the backend API (api/chat.js) that proxies to OpenAI
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
